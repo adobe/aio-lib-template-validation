@@ -1,0 +1,30 @@
+{
+  "name": "aio-lib-template-validation",
+  "version": "1.0.0",
+  "description": "Run validation checks on NPM packages that are App Builder templates",
+  "main": "src/index.js",
+  "bin": {
+    "tv": "src/index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adobe/aio-lib-template-validation.git"
+  },
+  "author": "Amy Zhao <azhao@adobe.com>",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/adobe/aio-lib-template-validation/issues"
+  },
+  "homepage": "https://github.com/adobe/aio-lib-template-validation#readme",
+  "dependencies": {
+    "commander": "^9.0.0",
+    "kleur": "^4.1.4",
+    "loglevel": "^1.8.0",
+    "mocha": "^9.2.2",
+    "sync-exec": "^0.6.2",
+    "util": "^0.12.4"
+  }
+}
