@@ -70,4 +70,21 @@ describe(`checks node version ^14 || ^16`, function () {
         const result = await checkNodeVersion.method(vJSON)
         expect(result.status).toEqual('fail')
     })
+    it('missing _nodeVersion, returns status: fail', async () => {
+        var vJSON = {
+            missing_nodeVersion: '0.00.00'
+        }
+        const result = await checkNodeVersion.method(vJSON)
+        expect(result.status).toEqual('fail')
+    })
+    it('returns status: fail', async () => {
+        var vJSON = {}
+        const result = await checkNodeVersion.method(vJSON)
+        expect(result.status).toEqual('fail')
+    })
+    it('input is null, returns status: fail', async () => {
+        var vJSON = null
+        const result = await checkNodeVersion.method(vJSON)
+        expect(result.status).toEqual('fail')
+    })
 })

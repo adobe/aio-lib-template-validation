@@ -37,4 +37,14 @@ describe(`checks description is not empty`, function () {
         expect(result.status).toEqual('fail')
         expect(result.message).toEqual('Metadata input missing description')
     })
+    it('returns status: fail', async () => {
+        var vJSON = {}
+        const result = await descriptionNotEmpty.method(vJSON)
+        expect(result.status).toEqual('fail')
+    })
+    it('input is null, returns status: fail', async () => {
+        var vJSON = null
+        const result = await descriptionNotEmpty.method(vJSON)
+        expect(result.status).toEqual('fail')
+    })
 })

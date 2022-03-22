@@ -10,15 +10,24 @@ OF ANY KIND, either express or implied. See the License for the specific languag
 governing permissions and limitations under the License.
 */
 
+const VERSIONS = [14, 16]
+
 async function checkNodeVersion(metadataJSON) {
+    if(!metadataJSON) {
+        return {
+            message: 'Error: metadataJSON is null',
+            status: 'fail'
+        }
+    }
     if ('_nodeVersion' in metadataJSON) {
         var nodeVersion = metadataJSON._nodeVersion
-        const regex14 = new RegExp('^14(.[0-9]d*)*')
-        const regex16 = new RegExp('^16(.[0-9]d*)*')
-        if (regex14.test(nodeVersion) || regex16.test(nodeVersion)) {
-            return {
-                message: '',
-                status: 'pass',
+        for(let version of VERSIONS) {
+            let regex = new RegExp(`^${version}(.[0-9]d*)*`)
+            if(regex.test(nodeVersion)) {
+                return {
+                    message: '',
+                    status: 'pass',
+                }
             }
         }
         return {

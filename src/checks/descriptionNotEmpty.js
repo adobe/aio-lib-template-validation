@@ -11,6 +11,12 @@ governing permissions and limitations under the License.
 */
 
 async function descriptionNotEmpty(metadataJSON) {
+    if(!metadataJSON) {
+        return {
+            message: 'Error: metadataJSON is null',
+            status: 'fail'
+        }
+    }
     if ('description' in metadataJSON) {
         if (!metadataJSON.description) {
             return {

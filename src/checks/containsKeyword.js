@@ -11,6 +11,12 @@ governing permissions and limitations under the License.
 */
 
 async function containsKeyword(metadataJSON) {
+    if(!metadataJSON) {
+        return {
+            message: 'Error: metadataJSON is null',
+            status: 'fail'
+        }
+    }
     if ('keywords' in metadataJSON) {
         const index = metadataJSON.keywords.findIndex((element) => {
             if (element.includes('aio-app-builder-template')) {
