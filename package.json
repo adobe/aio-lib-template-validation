@@ -17,7 +17,7 @@
     "type": "git",
     "url": "git+https://github.com/adobe/aio-lib-template-validation.git"
   },
-  "author": "Amy Zhao <azhao@adobe.com>",
+  "author": "adobe",
   "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/adobe/aio-lib-template-validation/issues"

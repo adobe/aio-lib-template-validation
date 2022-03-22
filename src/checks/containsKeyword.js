@@ -38,5 +38,5 @@ async function containsKeyword(metadataJSON) {
 
 module.exports = {
     method: containsKeyword,
-    description: 'NPM package should have keyword aio-app-builder-template',
+    description: 'NPM package should have keyword "aio-app-builder-template"',
 }
