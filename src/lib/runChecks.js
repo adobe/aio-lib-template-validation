@@ -13,10 +13,12 @@ governing permissions and limitations under the License.
 const Mocha = require('mocha')
 const { logger } = require('./logger')
 
+// import individual checks
 const checkNodeVersion = require('../checks/checkNodeVersion')
 const descriptionNotEmpty = require('../checks/descriptionNotEmpty')
 const containsKeyword = require('../checks/containsKeyword')
 
+// array of checks that need to be run on metadata
 const checks = [descriptionNotEmpty, containsKeyword, checkNodeVersion]
 
 async function runChecks(metadataJSON) {
@@ -25,9 +27,11 @@ async function runChecks(metadataJSON) {
     })
     const suite = new Mocha.Suite('Validating App Builder templates')
     suite.timeout(0)
+    // add each check to Mocha test suite
     for (let check of checks) {
         suite.addTest(
             new Mocha.Test(check.description, async function () {
+                // each check should return a status ('pass' or 'fail') and a message
                 const result = await check.method(metadataJSON)
                 if (result.status === 'pass') {
                     return true

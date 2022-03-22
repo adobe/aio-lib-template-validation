@@ -13,17 +13,22 @@ governing permissions and limitations under the License.
 var exec = require('sync-exec')
 const runChecks = require('../lib/runChecks')
 
+// get metadata about NPM packages using npm view command
 async function getTemplateMetadata(packageName) {
     // Exec output contains both stderr and stdout outputs
     return exec(`npm view ${packageName} --json`).stdout
 }
 
+// run checks on NPM package
 async function check(packageUrl) {
+    // parse package URL input for package name
     var p_url = new URL(packageUrl)
     var p_url_path = p_url.pathname
     var packageName = p_url_path.split('package/')[1]
+    // get metadata using package name and convert to JSON object
     var templateMetadata = await getTemplateMetadata(packageName)
     var templateJSON = JSON.parse(templateMetadata)
+    // run all checks on metadata JSON object
     await runChecks(templateJSON)
 }
 

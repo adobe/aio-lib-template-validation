@@ -72,7 +72,7 @@ describe(`checks node version ^14 || ^16`, function () {
     })
     it('missing _nodeVersion, returns status: fail', async () => {
         var vJSON = {
-            missing_nodeVersion: '0.00.00'
+            missing_nodeVersion: '0.00.00',
         }
         const result = await checkNodeVersion.method(vJSON)
         expect(result.status).toEqual('fail')

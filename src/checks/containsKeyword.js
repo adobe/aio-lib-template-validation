@@ -11,10 +11,10 @@ governing permissions and limitations under the License.
 */
 
 async function containsKeyword(metadataJSON) {
-    if(!metadataJSON) {
+    if (!metadataJSON) {
         return {
             message: 'Error: metadataJSON is null',
-            status: 'fail'
+            status: 'fail',
         }
     }
     if ('keywords' in metadataJSON) {

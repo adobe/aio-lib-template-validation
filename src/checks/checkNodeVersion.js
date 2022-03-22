@@ -10,20 +10,23 @@ OF ANY KIND, either express or implied. See the License for the specific languag
 governing permissions and limitations under the License.
 */
 
+// const array specifies accepted versions of NodeJS
+// can specify major/minor versions, ex: 14, 14.13, 16.34.02
 const VERSIONS = [14, 16]
 
 async function checkNodeVersion(metadataJSON) {
-    if(!metadataJSON) {
+    if (!metadataJSON) {
         return {
             message: 'Error: metadataJSON is null',
-            status: 'fail'
+            status: 'fail',
         }
     }
     if ('_nodeVersion' in metadataJSON) {
         var nodeVersion = metadataJSON._nodeVersion
-        for(let version of VERSIONS) {
+        // for each accepted version, make regex and check if node version in metadata matches one
+        for (let version of VERSIONS) {
             let regex = new RegExp(`^${version}(.[0-9]d*)*`)
-            if(regex.test(nodeVersion)) {
+            if (regex.test(nodeVersion)) {
                 return {
                     message: '',
                     status: 'pass',
