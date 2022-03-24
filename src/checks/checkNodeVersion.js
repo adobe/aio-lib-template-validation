@@ -22,7 +22,7 @@ async function checkNodeVersion(metadataJSON) {
         }
     }
     if ('_nodeVersion' in metadataJSON) {
-        var nodeVersion = metadataJSON._nodeVersion
+        let nodeVersion = metadataJSON._nodeVersion
         // for each accepted version, make regex and check if node version in metadata matches one
         for (let version of VERSIONS) {
             let regex = new RegExp(`^${version}(.[0-9]d*)*`)

@@ -15,14 +15,14 @@ const descriptionNotEmpty = require('../src/checks/descriptionNotEmpty')
 
 describe(`checks description is not empty`, function () {
     it('returns status: pass', async () => {
-        var descJSON = {
+        let descJSON = {
             description: 'Mock description',
         }
         const result = await descriptionNotEmpty.method(descJSON)
         expect(result.status).toEqual('pass')
     })
     it('empty description, returns status: fail', async () => {
-        var descJSON = {
+        let descJSON = {
             description: '',
         }
         const result = await descriptionNotEmpty.method(descJSON)
@@ -30,7 +30,7 @@ describe(`checks description is not empty`, function () {
         expect(result.message).toEqual('NPM package missing description.')
     })
     it('missing description, returns status: fail', async () => {
-        var descJSON = {
+        let descJSON = {
             noDesc: 'description not a key',
         }
         const result = await descriptionNotEmpty.method(descJSON)
@@ -38,12 +38,12 @@ describe(`checks description is not empty`, function () {
         expect(result.message).toEqual('Metadata input missing description')
     })
     it('returns status: fail', async () => {
-        var vJSON = {}
+        let vJSON = {}
         const result = await descriptionNotEmpty.method(vJSON)
         expect(result.status).toEqual('fail')
     })
     it('input is null, returns status: fail', async () => {
-        var vJSON = null
+        let vJSON = null
         const result = await descriptionNotEmpty.method(vJSON)
         expect(result.status).toEqual('fail')
     })

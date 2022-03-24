@@ -26,7 +26,7 @@ async function runChecks(metadataJSON) {
         reporter: 'spec',
     })
     const suite = new Mocha.Suite('Validating App Builder templates')
-    suite.timeout(0)
+    suite.timeout(0) //disables timeout
     // add each check to Mocha test suite
     for (let check of checks) {
         suite.addTest(
@@ -41,15 +41,11 @@ async function runChecks(metadataJSON) {
         )
     }
     mocha.suite.addSuite(suite)
-    await new Promise((resolve) => {
-        mocha.run((failures) => {
-            if (failures) {
-                logger.error(`${failures} failures found. See report.`)
-                process.exitCode = 1
-                resolve()
-            }
-            resolve()
-        })
+    mocha.run((failures) => {
+        if (failures) {
+            logger.error(`${failures} failures found. See report.`)
+            process.exitCode = 1
+        }
     })
 }
 

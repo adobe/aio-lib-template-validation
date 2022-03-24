@@ -15,75 +15,75 @@ const checkNodeVersion = require('../src/checks/checkNodeVersion')
 
 describe(`checks node version ^14 || ^16`, function () {
     it('returns status: pass', async () => {
-        var vJSON = {
+        let vJSON = {
             _nodeVersion: '14',
         }
         const result = await checkNodeVersion.method(vJSON)
         expect(result.status).toEqual('pass')
     })
     it('returns status: pass', async () => {
-        var vJSON = {
+        let vJSON = {
             _nodeVersion: '14.0',
         }
         const result = await checkNodeVersion.method(vJSON)
         expect(result.status).toEqual('pass')
     })
     it('returns status: pass', async () => {
-        var vJSON = {
+        let vJSON = {
             _nodeVersion: '14.35.12',
         }
         const result = await checkNodeVersion.method(vJSON)
         expect(result.status).toEqual('pass')
     })
     it('returns status: pass', async () => {
-        var vJSON = {
+        let vJSON = {
             _nodeVersion: '16',
         }
         const result = await checkNodeVersion.method(vJSON)
         expect(result.status).toEqual('pass')
     })
     it('returns status: pass', async () => {
-        var vJSON = {
+        let vJSON = {
             _nodeVersion: '16.0',
         }
         const result = await checkNodeVersion.method(vJSON)
         expect(result.status).toEqual('pass')
     })
     it('returns status: pass', async () => {
-        var vJSON = {
+        let vJSON = {
             _nodeVersion: '16.23.64.12',
         }
         const result = await checkNodeVersion.method(vJSON)
         expect(result.status).toEqual('pass')
     })
     it('returns status: fail', async () => {
-        var vJSON = {
+        let vJSON = {
             _nodeVersion: '12.22.41',
         }
         const result = await checkNodeVersion.method(vJSON)
         expect(result.status).toEqual('fail')
     })
     it('returns status: fail', async () => {
-        var vJSON = {
+        let vJSON = {
             _nodeVersion: '12.14.53',
         }
         const result = await checkNodeVersion.method(vJSON)
         expect(result.status).toEqual('fail')
     })
     it('missing _nodeVersion, returns status: fail', async () => {
-        var vJSON = {
+        let vJSON = {
             missing_nodeVersion: '0.00.00',
         }
         const result = await checkNodeVersion.method(vJSON)
         expect(result.status).toEqual('fail')
     })
     it('returns status: fail', async () => {
-        var vJSON = {}
+        let vJSON = {}
         const result = await checkNodeVersion.method(vJSON)
         expect(result.status).toEqual('fail')
     })
     it('input is null, returns status: fail', async () => {
-        var vJSON = null
+        let vJSON = null
         const result = await checkNodeVersion.method(vJSON)
         expect(result.status).toEqual('fail')
     })
