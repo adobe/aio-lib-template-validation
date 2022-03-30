@@ -1,5 +1,5 @@
 {
-  "name": "aio-lib-template-validation",
+  "name": "@adobe/aio-lib-template-validation",
   "version": "1.0.0",
   "description": "Run validation checks on NPM packages that are App Builder templates",
   "main": "src/index.js",
@@ -17,12 +17,15 @@
     "type": "git",
     "url": "git+https://github.com/adobe/aio-lib-template-validation.git"
   },
-  "author": "adobe",
+  "author": "Adobe Inc.",
   "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/adobe/aio-lib-template-validation/issues"
   },
   "homepage": "https://github.com/adobe/aio-lib-template-validation#readme",
+  "files": [
+    "src"
+  ],
   "dependencies": {
     "commander": "^9.0.0",
     "kleur": "^4.1.4",
