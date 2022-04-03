@@ -23,11 +23,7 @@ function getChecks() {
     const checkNodeVersion = require('../checks/checkNodeVersion')
     const descriptionNotEmpty = require('../checks/descriptionNotEmpty')
     const containsKeyword = require('../checks/containsKeyword')
-    return [
-        checkNodeVersion,
-        descriptionNotEmpty,
-        containsKeyword
-    ]
+    return [checkNodeVersion, descriptionNotEmpty, containsKeyword]
 }
 
 function outputResults(results, outputInJson) {
@@ -35,21 +31,25 @@ function outputResults(results, outputInJson) {
         console.log(JSON.stringify(results, null, 4))
     } else {
         if (results.stats.failures !== 0) {
-            console.error(`${results.stats.failures} of ${results.stats.tests} tests failed.`)
-            console.error("Failed tests:")
+            console.error(
+                `${results.stats.failures} of ${results.stats.tests} tests failed.`
+            )
+            console.error('Failed tests:')
             let i = 1
             for (const test of results.failures) {
                 console.error(` ${i++}) ${test.description}`)
                 console.error(`    Error: ${test.message}`)
             }
-            console.error("Passed tests:")
+            console.error('Passed tests:')
             i = 1
             for (const test of results.passes) {
                 console.error(` ${i++}) ${test.description}`)
             }
         } else {
-            console.log(`${results.stats.passes} of ${results.stats.tests} tests passed.`)
-            console.log("Tests:")
+            console.log(
+                `${results.stats.passes} of ${results.stats.tests} tests passed.`
+            )
+            console.log('Tests:')
             let i = 1
             for (const test of results.passes) {
                 console.log(` ${i++}) ${test.description}`)
@@ -68,21 +68,21 @@ async function check(packageUrl, options) {
     let templateMetadata = await getTemplateMetadata(packageName)
     let templateJSON = JSON.parse(templateMetadata)
     let results = {
-        "stats": {
-            "tests": 0,
-            "passes": 0,
-            "failures": 0
+        stats: {
+            tests: 0,
+            passes: 0,
+            failures: 0,
         },
-        "passes": [],
-        "failures": []
+        passes: [],
+        failures: [],
     }
     // run all checks on metadata JSON object
     const checks = getChecks()
     for (const check of checks) {
         let result = await check.method(templateJSON)
         results.stats.tests++
-        result = {...{"description": check.description}, ...result}
-        if (result.status === "fail") {
+        result = { ...{ description: check.description }, ...result }
+        if (result.status === 'fail') {
             results.stats.failures++
             results.failures.push(result)
         } else {
