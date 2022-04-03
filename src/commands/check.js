@@ -28,7 +28,9 @@ function getChecks() {
 
 function outputResults(results, outputInJson) {
     if (outputInJson === true) {
-        console.log(JSON.stringify(results, null, 4))
+        results.stats.failures !== 0
+            ? console.error(JSON.stringify(results, null, 4))
+            : console.log(JSON.stringify(results, null, 4))
     } else {
         if (results.stats.failures !== 0) {
             console.error(
