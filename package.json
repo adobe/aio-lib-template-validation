@@ -1,8 +1,8 @@
 {
   "name": "@adobe/aio-lib-template-validation",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Run validation checks on NPM packages that are App Builder templates",
-  "main": "src/index.js",
+  "main": "src/import.cjs",
   "bin": {
     "tv": "src/index.js"
   },
@@ -28,11 +28,7 @@
   ],
   "dependencies": {
     "commander": "^9.0.0",
-    "kleur": "^4.1.4",
-    "loglevel": "^1.8.0",
-    "mocha": "^9.2.2",
-    "sync-exec": "^0.6.2",
-    "util": "^0.12.4"
+    "sync-exec": "^0.6.2"
   },
   "devDependencies": {
     "eslint": "^8.11.0",
