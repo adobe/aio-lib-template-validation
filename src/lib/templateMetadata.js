@@ -28,7 +28,6 @@ async function getTemplateMetadata(packageName) {
         return JSON.parse(templateMetadata)
     } catch (e) {
         let error = `Error fatching metadata for ${packageName}`
-        console.error(error)
         throw new Error(error)
     }
 }
