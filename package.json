@@ -2,7 +2,7 @@
   "name": "@adobe/aio-lib-template-validation",
   "version": "1.1.0",
   "description": "Run validation checks on NPM packages that are App Builder templates",
-  "main": "src/index.js",
+  "main": "src/import.js",
   "bin": {
     "tv": "src/index.js"
   },
