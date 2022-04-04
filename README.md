@@ -2,11 +2,11 @@
 NPM-based tool to validate App Builder templates during submission process to [App Builder Template Registry](https://github.com/adobe/aio-template-submission).
 
 # Validation checks
-| Check        | Description                                                | Condition                          |
-|--------------|------------------------------------------------------------|------------------------------------|
-| Description  | Package must have a description                            | Not empty                          |
-| Keywords     | Must contain a keyword                                     | `aio-app-builder-template`         |
-| Node version | The package must run on all Active LTS versions of Node.js | <code>^14  &#124; &#124; ^16<code> |
+| Check        | Description                                                | Condition                           |
+|--------------|------------------------------------------------------------|-------------------------------------|
+| Description  | Package must have a description                            | Not empty                           |
+| Keywords     | Must contain a keyword                                     | `aio-app-builder-template`          |
+| Node version | The package must run on all Active LTS versions of Node.js | <code>^14  &#124; &#124; ^16</code> |
 
 # Getting started
 ## Installation
