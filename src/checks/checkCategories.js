@@ -13,7 +13,7 @@ governing permissions and limitations under the License.
 /**
  * Check that template categories are listed in install.yml file
  *
- * @param fileData
+ * @param {object} fileData
  * @returns {Promise<{message: string, status: string}>}
  */
 async function checkCategories(fileData) {

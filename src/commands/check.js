@@ -15,8 +15,8 @@ const { checkTemplateMetadata } = require('../lib/templateMetadata');
 /**
  * Outputs check results
  *
- * @param results
- * @param outputInJson
+ * @param {object} results
+ * @param {boolean} outputInJson
  */
 function outputResults(results, outputInJson) {
     if (outputInJson === true) {
@@ -53,8 +53,8 @@ function outputResults(results, outputInJson) {
 /**
  * Run checks on template package
  *
- * @param path
- * @param options
+ * @param {string} path
+ * @param {object} options
  * @returns {Promise<void>}
  */
 async function check(path, options) {

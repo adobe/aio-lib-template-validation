@@ -35,7 +35,7 @@ const filesToCheck = [
 /**
  * Run checks on template package
  *
- * @param path
+ * @param {string} path
  * @returns {Promise<{failures: *[], passes: *[], stats: {tests: number, failures: number, passes: number}}>}
  */
 async function checkTemplateMetadata(path) {

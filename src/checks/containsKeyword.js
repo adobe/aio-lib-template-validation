@@ -13,7 +13,7 @@ governing permissions and limitations under the License.
 /**
  * Check that package.json contains required keywords
  *
- * @param fileData
+ * @param {object} fileData
  * @returns {Promise<{message: string, status: string}>}
  */
 async function containsKeyword(fileData) {
@@ -23,12 +23,7 @@ async function containsKeyword(fileData) {
             status: 'fail',
         };
     }
-    const index = fileData.keywords.findIndex((element) => {
-        if (element.includes('aio-app-builder-template')) {
-            return true;
-        }
-    });
-    if (index === -1) {
+    if (fileData.keywords.findIndex(element => element.includes('aio-app-builder-template')) === -1) {
         return {
             message:
                 'ecosystem:aio-app-builder-template must be one of the keywords in package.json',
