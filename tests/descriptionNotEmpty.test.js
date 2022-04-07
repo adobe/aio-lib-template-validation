@@ -10,41 +10,36 @@ OF ANY KIND, either express or implied. See the License for the specific languag
 governing permissions and limitations under the License.
 */
 
-const { describe, it, expect } = require('@jest/globals')
-const descriptionNotEmpty = require('../src/checks/descriptionNotEmpty')
+const { describe, it, expect } = require('@jest/globals');
+const descriptionNotEmpty = require('../src/checks/descriptionNotEmpty');
 
 describe(`checks description is not empty`, function () {
     it('returns status: pass', async () => {
         let descJSON = {
             description: 'Mock description',
-        }
-        const result = await descriptionNotEmpty.method(descJSON)
-        expect(result.status).toEqual('pass')
-    })
+        };
+        const result = await descriptionNotEmpty.method(descJSON);
+        expect(result.status).toEqual('pass');
+    });
     it('empty description, returns status: fail', async () => {
         let descJSON = {
             description: '',
-        }
-        const result = await descriptionNotEmpty.method(descJSON)
-        expect(result.status).toEqual('fail')
-        expect(result.message).toEqual('NPM package missing description.')
-    })
+        };
+        const result = await descriptionNotEmpty.method(descJSON);
+        expect(result.status).toEqual('fail');
+        expect(result.message).toEqual('package.json must contain a description');
+    });
     it('missing description, returns status: fail', async () => {
         let descJSON = {
             noDesc: 'description not a key',
-        }
-        const result = await descriptionNotEmpty.method(descJSON)
-        expect(result.status).toEqual('fail')
-        expect(result.message).toEqual('Metadata input missing description')
-    })
+        };
+        const result = await descriptionNotEmpty.method(descJSON);
+        expect(result.status).toEqual('fail');
+        expect(result.message).toEqual('package.json must contain a description');
+    });
     it('returns status: fail', async () => {
-        let vJSON = {}
-        const result = await descriptionNotEmpty.method(vJSON)
-        expect(result.status).toEqual('fail')
-    })
-    it('input is null, returns status: fail', async () => {
-        let vJSON = null
-        const result = await descriptionNotEmpty.method(vJSON)
-        expect(result.status).toEqual('fail')
-    })
-})
+        let vJSON = {};
+        const result = await descriptionNotEmpty.method(vJSON);
+        expect(result.status).toEqual('fail');
+    });
+});

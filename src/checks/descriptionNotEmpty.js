@@ -10,32 +10,26 @@ OF ANY KIND, either express or implied. See the License for the specific languag
 governing permissions and limitations under the License.
 */
 
-async function descriptionNotEmpty(metadataJSON) {
-    if (!metadataJSON) {
+/**
+ * Check that package.json contains a description
+ *
+ * @param fileData
+ * @returns {Promise<{message: string, status: string}>}
+ */
+async function descriptionNotEmpty(fileData) {
+    if (!fileData.description) {
         return {
-            message: 'Error: metadataJSON is null',
+            message: 'package.json must contain a description',
             status: 'fail',
-        }
-    }
-    if ('description' in metadataJSON) {
-        if (!metadataJSON.description) {
-            return {
-                message: 'NPM package missing description.',
-                status: 'fail',
-            }
-        }
-        return {
-            message: '',
-            status: 'pass',
-        }
+        };
     }
     return {
-        message: 'Metadata input missing description',
-        status: 'fail',
-    }
+        message: '',
+        status: 'pass',
+    };
 }
 
 module.exports = {
     method: descriptionNotEmpty,
-    description: 'Description of NPM package is not empty',
-}
+    description: 'package.json must have a description',
+};

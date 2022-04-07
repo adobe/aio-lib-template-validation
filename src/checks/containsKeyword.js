@@ -10,39 +10,38 @@ OF ANY KIND, either express or implied. See the License for the specific languag
 governing permissions and limitations under the License.
 */
 
-async function containsKeyword(metadataJSON) {
-    if (!metadataJSON) {
+/**
+ * Check that package.json contains required keywords
+ *
+ * @param fileData
+ * @returns {Promise<{message: string, status: string}>}
+ */
+async function containsKeyword(fileData) {
+    if (!fileData.keywords) {
         return {
-            message: 'Error: metadataJSON is null',
+            message: 'package.json must contain keywords',
             status: 'fail',
-        }
+        };
     }
-    if ('keywords' in metadataJSON) {
-        const index = metadataJSON.keywords.findIndex((element) => {
-            if (element.includes('aio-app-builder-template')) {
-                return true
-            }
-        })
-        if (index != -1) {
-            return {
-                message: '',
-                status: 'pass',
-            }
-        } else {
-            return {
-                message:
-                    'ecosystem:aio-app-builder-template must be one of the keywords in the NPM package',
-                status: 'fail',
-            }
+    const index = fileData.keywords.findIndex((element) => {
+        if (element.includes('aio-app-builder-template')) {
+            return true;
         }
+    });
+    if (index === -1) {
+        return {
+            message:
+                'ecosystem:aio-app-builder-template must be one of the keywords in package.json',
+            status: 'fail',
+        };
     }
     return {
-        message: 'Metadata input missing keywords',
-        status: 'fail',
-    }
+        message: '',
+        status: 'pass',
+    };
 }
 
 module.exports = {
     method: containsKeyword,
-    description: 'NPM package should have keyword "aio-app-builder-template"',
-}
+    description: 'package.json must contain a keyword "aio-app-builder-template"',
+};

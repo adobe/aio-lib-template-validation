@@ -4,4 +4,4 @@ module.exports = {
     coverageReporters: ['lcovonly', 'html', 'text-summary'],
     coverageDirectory: '../coverage',
     collectCoverageFrom: ['src/**/*.js'],
-}
+};
