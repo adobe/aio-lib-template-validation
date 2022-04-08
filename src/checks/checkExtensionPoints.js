@@ -11,22 +11,15 @@ governing permissions and limitations under the License.
 */
 
 /**
- * Check that package.json contains required keywords
+ * Check that extension points are listed in install.yml file
  *
  * @param {object} fileData
  * @returns {Promise<{message: string, status: string}>}
  */
-async function containsKeyword(fileData) {
-    if (!fileData.keywords) {
+async function checkExtensionPoints(fileData) {
+    if (!fileData.extension || !fileData.extension.name) {
         return {
-            message: 'package.json must contain keywords',
-            status: 'fail',
-        };
-    }
-    if (fileData.keywords.findIndex(element => element.includes('aio-app-builder-template')) === -1) {
-        return {
-            message:
-                'ecosystem:aio-app-builder-template must be one of the keywords in package.json',
+            message: 'install.yml must specify extension points',
             status: 'fail',
         };
     }
@@ -37,6 +30,6 @@ async function containsKeyword(fileData) {
 }
 
 module.exports = {
-    method: containsKeyword,
-    description: 'package.json must contain a keyword "aio-app-builder-template"',
+    method: checkExtensionPoints,
+    description: 'install.yml must contain extension points',
 };

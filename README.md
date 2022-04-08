@@ -2,11 +2,19 @@
 NPM-based tool to validate App Builder templates during submission process to [App Builder Template Registry](https://github.com/adobe/aio-template-submission).
 
 # Validation checks
-| Check        | Description                                                | Condition                           |
-|--------------|------------------------------------------------------------|-------------------------------------|
-| Description  | Package must have a description                            | Not empty                           |
-| Keywords     | Must contain a keyword                                     | `aio-app-builder-template`          |
-| Node version | The package must run on all Active LTS versions of Node.js | <code>^14  &#124; &#124; ^16</code> |
+## package.json file
+
+| Check        | Description                      | Condition                           |
+|--------------|----------------------------------|-------------------------------------|
+| Description  | Template must have a description | Not empty                           |
+| Keywords     | Must contain a keyword           | `aio-app-builder-template`          |
+
+## install.yml file
+
+| Check           | Description                   | Condition |
+|-----------------|-------------------------------|-----------|
+| Categories      | Must declare categories       | Not empty |
+| Extension point | Must declare extension points | Not empty |
 
 # Getting started
 ## Installation
@@ -18,9 +26,9 @@ $ tv
 ## Usage
 To check a specific template run:
 ```bash
-$ tv run-checks <packageUrl>
+$ tv run-checks <path>
 ```
-This will execute all checks on App Builder template given NPM package URL and output the results.
+This will execute all checks on App Builder template given path to the template code and output the results.
 You can add `--json` or `-j` option to output results in JSON format.
 
 ## Installation as a library

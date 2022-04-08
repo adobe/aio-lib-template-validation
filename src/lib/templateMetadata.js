@@ -10,31 +10,35 @@ OF ANY KIND, either express or implied. See the License for the specific languag
 governing permissions and limitations under the License.
 */
 
-const exec = require('sync-exec')
+const fs = require('fs');
+const YAML = require('yaml');
 
 // import individual checks
-const checkNodeVersion = require('../checks/checkNodeVersion')
-const descriptionNotEmpty = require('../checks/descriptionNotEmpty')
-const containsKeyword = require('../checks/containsKeyword')
+const descriptionNotEmpty = require('../checks/descriptionNotEmpty');
+const containsKeyword = require('../checks/containsKeyword');
+const checkCategories = require('../checks/checkCategories');
+const checkExtensionPoints = require('../checks/checkExtensionPoints');
 
-// array of checks that need to be run on metadata
-const checks = [descriptionNotEmpty, containsKeyword, checkNodeVersion]
+const filesToCheck = [
+    {
+        "name": "install.yml",
+        "parser": YAML,
+        "checks": [checkCategories, checkExtensionPoints]
+    },
+    {
+        "name": "package.json",
+        "parser": JSON,
+        "checks": [descriptionNotEmpty, containsKeyword]
+    },
+];
 
-// get metadata about NPM packages using npm view command
-async function getTemplateMetadata(packageName) {
-    // Exec output contains both stderr and stdout outputs
-    let templateMetadata = await exec(`npm view ${packageName} --json`).stdout
-    try {
-        return JSON.parse(templateMetadata)
-    } catch (e) {
-        let error = `Error fatching metadata for ${packageName}`
-        throw new Error(error)
-    }
-}
-
-// run checks on NPM package
-async function checkTemplateMetadata(packageName) {
-    let templateMetadata = await getTemplateMetadata(packageName)
+/**
+ * Run checks on template package
+ *
+ * @param {string} path
+ * @returns {Promise<{failures: *[], passes: *[], stats: {tests: number, failures: number, passes: number}}>}
+ */
+async function checkTemplateMetadata(path) {
     let results = {
         stats: {
             tests: 0,
@@ -43,24 +47,37 @@ async function checkTemplateMetadata(packageName) {
         },
         passes: [],
         failures: [],
-    }
-    // run all checks on metadata JSON object
-    for (const check of checks) {
-        let result = await check.method(templateMetadata)
-        results.stats.tests++
-        result = { ...{ description: check.description }, ...result }
-        if (result.status === 'fail') {
-            results.stats.failures++
-            results.failures.push(result)
-        } else {
-            results.stats.passes++
-            results.passes.push(result)
+    };
+
+    for (const fileToCheck of filesToCheck) {
+        try {
+            const file = fs.readFileSync(path + '/' + fileToCheck.name, 'utf8');
+            const fileData = fileToCheck.parser.parse(file);
+            for (const check of fileToCheck.checks) {
+                let result = await check.method(fileData);
+                results.stats.tests++;
+                result = {...{description: check.description}, ...result};
+                if (result.status === 'fail') {
+                    results.stats.failures++;
+                    results.failures.push(result);
+                } else {
+                    results.stats.passes++;
+                    results.passes.push(result);
+                }
+            }
+        } catch (e) {
+            results.stats.tests++;
+            results.stats.failures++;
+            results.failures.push({
+                message: fileToCheck.name + ' file not found or is invalid',
+                status: 'fail',
+                description: fileToCheck.name + ' is required and must be valid'
+            });
         }
     }
-    return results
+    return results;
 }
 
 module.exports = {
-    getTemplateMetadata,
     checkTemplateMetadata,
-}
+};
