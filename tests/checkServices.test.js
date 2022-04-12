@@ -11,29 +11,29 @@ governing permissions and limitations under the License.
 */
 
 const {describe, it, expect} = require('@jest/globals');
-const checkExtensionPoints = require('../src/checks/checkExtensionPoints.js');
+const checkServices = require('../src/checks/checkServices.js');
 
-describe(`install.yml contains extension points`, function () {
-    it('extension points object returns status: pass', async () => {
-        let extensionPointsYml = {
-            extension: [{id: 'dx/excshell/1'}],
+describe(`install.yml contains services`, function () {
+    it('services array returns status: pass', async () => {
+        let servicesYml = {
+            services: ['AnalyticsSDK', 'CampaignStandard'],
         };
-        const result = await checkExtensionPoints.method(extensionPointsYml);
+        const result = await checkServices.method(servicesYml);
         expect(result.status).toEqual('pass');
     });
-    it('missing extension points returns status: fail', async () => {
-        let extensionPointsYml = {
+    it('missing services returns status: fail', async () => {
+        let servicesYml = {
             noNameFiled: ['config'],
         };
-        const result = await checkExtensionPoints.method(extensionPointsYml);
+        const result = await checkServices.method(servicesYml);
         expect(result.status).toEqual('fail');
         expect(result.message).toEqual(
-            'install.yml must specify extension points'
+            'install.yml must contain a list of services that template utilizes'
         );
     });
     it('empty object returns status: fail', async () => {
-        let extensionPointsYml = {};
-        const result = await checkExtensionPoints.method(extensionPointsYml);
+        let servicesYml = {};
+        const result = await checkServices.method(servicesYml);
         expect(result.status).toEqual('fail');
     });
 });

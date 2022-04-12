@@ -4,17 +4,18 @@ NPM-based tool to validate App Builder templates during submission process to [A
 # Validation checks
 ## package.json file
 
-| Check        | Description                      | Condition                           |
-|--------------|----------------------------------|-------------------------------------|
-| Description  | Template must have a description | Not empty                           |
-| Keywords     | Must contain a keyword           | `aio-app-builder-template`          |
+| Field         | Description                                       | Required           |
+|---------------|---------------------------------------------------|--------------------|
+| `description` | Template must have a description                  | :heavy_check_mark: |
+| `keywords`    | Must contain a keyword `aio-app-builder-template` | :heavy_check_mark: |
 
 ## install.yml file
 
-| Check           | Description                   | Condition |
-|-----------------|-------------------------------|-----------|
-| Categories      | Must declare categories       | Not empty |
-| Extension point | Must declare extension points | Not empty |
+| Field        | Description                                    | Required           |
+|--------------|------------------------------------------------|--------------------|
+| `categories` | Template must have categories defined          | :heavy_check_mark: |
+| `extension`  | Template must declare extension points it uses | :heavy_check_mark: |
+| `services`   | Template must declare services it uses         | :heavy_check_mark: |
 
 # Getting started
 ## Installation

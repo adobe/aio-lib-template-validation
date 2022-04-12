@@ -11,15 +11,15 @@ governing permissions and limitations under the License.
 */
 
 /**
- * Check that extension points are listed in install.yml file
+ * Check that template services are listed in install.yml file
  *
  * @param {object} fileData
  * @returns {Promise<{message: string, status: string}>}
  */
-async function checkExtensionPoints(fileData) {
-    if (!fileData.extension) {
+async function checkServices(fileData) {
+    if (!fileData.services) {
         return {
-            message: 'install.yml must specify extension points',
+            message: 'install.yml must contain a list of services that template utilizes',
             status: 'fail',
         };
     }
@@ -30,6 +30,6 @@ async function checkExtensionPoints(fileData) {
 }
 
 module.exports = {
-    method: checkExtensionPoints,
-    description: 'install.yml must contain extension points',
+    method: checkServices,
+    description: 'install.yml must contain a list of services',
 };
