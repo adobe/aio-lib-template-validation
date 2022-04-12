@@ -11,21 +11,21 @@ governing permissions and limitations under the License.
 */
 
 const {describe, it, expect} = require('@jest/globals');
-const checkExtensionPoints = require('../src/checks/checkExtensionPoints.js');
+const checkExtensions = require('../src/checks/checkExtensions.js');
 
 describe(`install.yml contains extension points`, function () {
-    it('extension points object returns status: pass', async () => {
+    it('extension array returns status: pass', async () => {
         let extensionPointsYml = {
             extension: [{id: 'dx/excshell/1'}],
         };
-        const result = await checkExtensionPoints.method(extensionPointsYml);
+        const result = await checkExtensions.method(extensionPointsYml);
         expect(result.status).toEqual('pass');
     });
-    it('missing extension points returns status: fail', async () => {
+    it('missing extensions returns status: fail', async () => {
         let extensionPointsYml = {
             noNameFiled: ['config'],
         };
-        const result = await checkExtensionPoints.method(extensionPointsYml);
+        const result = await checkExtensions.method(extensionPointsYml);
         expect(result.status).toEqual('fail');
         expect(result.message).toEqual(
             'install.yml must specify extension points'
@@ -33,7 +33,7 @@ describe(`install.yml contains extension points`, function () {
     });
     it('empty object returns status: fail', async () => {
         let extensionPointsYml = {};
-        const result = await checkExtensionPoints.method(extensionPointsYml);
+        const result = await checkExtensions.method(extensionPointsYml);
         expect(result.status).toEqual('fail');
     });
 });

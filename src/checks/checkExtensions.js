@@ -11,12 +11,12 @@ governing permissions and limitations under the License.
 */
 
 /**
- * Check that extension points are listed in install.yml file
+ * Check that extension are listed in install.yml file
  *
  * @param {object} fileData
  * @returns {Promise<{message: string, status: string}>}
  */
-async function checkExtensionPoints(fileData) {
+async function checkExtensions(fileData) {
     if (!fileData.extension) {
         return {
             message: 'install.yml must specify extension points',
@@ -30,6 +30,6 @@ async function checkExtensionPoints(fileData) {
 }
 
 module.exports = {
-    method: checkExtensionPoints,
+    method: checkExtensions,
     description: 'install.yml must contain extension points',
 };
