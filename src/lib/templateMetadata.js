@@ -17,13 +17,14 @@ const YAML = require('yaml');
 const descriptionNotEmpty = require('../checks/descriptionNotEmpty');
 const containsKeyword = require('../checks/containsKeyword');
 const checkCategories = require('../checks/checkCategories');
-const checkExtensionPoints = require('../checks/checkExtensionPoints');
+const checkExtensions = require('../checks/checkExtensions');
+const checkServices = require('../checks/checkServices');
 
 const filesToCheck = [
     {
         "name": "install.yml",
         "parser": YAML,
-        "checks": [checkCategories, checkExtensionPoints]
+        "checks": [checkCategories, checkExtensions, checkServices]
     },
     {
         "name": "package.json",
