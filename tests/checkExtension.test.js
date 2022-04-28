@@ -11,48 +11,37 @@ governing permissions and limitations under the License.
 */
 
 const { describe, it, expect } = require('@jest/globals');
-const checkServices = require('../src/checks/checkServices.js');
+const checkExtension = require('../src/checks/checkExtension.js');
 
-describe('Validation of the "services" property in install.yml', function () {
+describe('Validation of the "extension" property in install.yml', function () {
     let installYmlData = {
         'categories': [
             'code',
             'ui'
         ]
     }
-    it('"services" is an optional property', async () => {
-        const result = await checkServices.method(installYmlData);
+    it('"extension" is an optional property', async () => {
+        const result = await checkExtension.method(installYmlData);
         expect(result).toEqual({
             message: '',
             status: 'pass',
         });
     });
-    it('"services" must be an array of objects containing the "code" key', async () => {
-        installYmlData['services'] = [
-            {
-                'code': 'AnalyticsSDK',
-                'credentials': 'OAuth'
-            },
-            {
-                'code': 'CampaignStandard'
-            }
-        ];
-        const result = await checkServices.method(installYmlData);
+    it('"extension" must provide the "serviceCode" key', async () => {
+        installYmlData['extension'] = {
+            'serviceCode': 'dx/excshell/1'
+        };
+        const result = await checkExtension.method(installYmlData);
         expect(result).toEqual({
             message: '',
             status: 'pass',
         });
     });
-    it('Incorrect services fail validation', async () => {
-        installYmlData['services'] = [
-            {},
-            {
-                'code': 'CampaignStandard'
-            }
-        ];
-        const result = await checkServices.method(installYmlData);
+    it('empty object fails validation', async () => {
+        installYmlData['extension'] = {};
+        const result = await checkExtension.method(installYmlData);
         expect(result).toEqual({
-            message: '"services" must be an array of objects containing the "code" key',
+            message: '"extension" must provide the "serviceCode" key.',
             status: 'fail',
         });
     });

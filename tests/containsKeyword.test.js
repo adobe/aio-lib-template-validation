@@ -21,9 +21,9 @@ describe(`contains keyword aio-app-builder-template`, function () {
         const result = await containsKeyword.method(keywordJSON);
         expect(result.status).toEqual('pass');
     });
-    it('keyword ecosystem:aio-app-builder-template, returns status: pass', async () => {
+    it('keyword aio-app-builder-template, returns status: pass', async () => {
         let keywordJSON = {
-            keywords: ['ecosystem:aio-app-builder-template', 'config'],
+            keywords: ['aio-app-builder-template', 'config'],
         };
         const result = await containsKeyword.method(keywordJSON);
         expect(result.status).toEqual('pass');
@@ -35,7 +35,7 @@ describe(`contains keyword aio-app-builder-template`, function () {
         const result = await containsKeyword.method(keywordJSON);
         expect(result.status).toEqual('fail');
         expect(result.message).toEqual(
-            'ecosystem:aio-app-builder-template must be one of the keywords in package.json'
+            'aio-app-builder-template must be one of the keywords in package.json'
         );
     });
     it('missing keywords, returns status: fail', async () => {

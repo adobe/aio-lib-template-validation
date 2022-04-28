@@ -11,15 +11,17 @@ governing permissions and limitations under the License.
 */
 
 /**
- * Check that template services are listed in install.yml file
+ * Check that "services" is an array of objects containing the "code" key
  *
  * @param {object} fileData
  * @returns {Promise<{message: string, status: string}>}
  */
 async function checkServices(fileData) {
-    if (!fileData.services) {
+    // "services" is an optional property
+    // "services" is an array of objects containing the "code" key
+    if (fileData.services && (!Array.isArray(fileData.services) || !areServicesValid(fileData.services))) {
         return {
-            message: 'install.yml must contain a list of services that template utilizes',
+            message: '"services" must be an array of objects containing the "code" key',
             status: 'fail',
         };
     }
@@ -29,7 +31,20 @@ async function checkServices(fileData) {
     };
 }
 
+/**
+ * @param {array} services
+ * @returns {boolean}
+ */
+function areServicesValid(services) {
+    for (const service of services) {
+        if (service.constructor.name !== 'Object' || !service.code) {
+            return false;
+        }
+    }
+    return true;
+}
+
 module.exports = {
     method: checkServices,
-    description: 'install.yml must contain a list of services',
+    description: 'Validation of the "services" property in install.yml',
 };

@@ -11,15 +11,16 @@ governing permissions and limitations under the License.
 */
 
 /**
- * Check that extension are listed in install.yml file
+ * Check that if the "extension" property is specified in the install.yml file it is an object containing the "serviceCode" key.
  *
  * @param {object} fileData
  * @returns {Promise<{message: string, status: string}>}
  */
-async function checkExtensions(fileData) {
-    if (!fileData.extension) {
+async function checkExtension(fileData) {
+    // "extension" is an optional property
+    if (fileData.extension && (fileData.extension.constructor.name !== 'Object' || !fileData.extension.serviceCode)) {
         return {
-            message: 'install.yml must specify extension points',
+            message: '"extension" must provide the "serviceCode" key.',
             status: 'fail',
         };
     }
@@ -30,6 +31,6 @@ async function checkExtensions(fileData) {
 }
 
 module.exports = {
-    method: checkExtensions,
-    description: 'install.yml must contain extension points',
+    method: checkExtension,
+    description: 'Validation of the "extension" property in install.yml',
 };
