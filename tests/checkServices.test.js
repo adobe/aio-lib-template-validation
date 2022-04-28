@@ -19,7 +19,7 @@ describe('Validation of the "services" property in install.yml', function () {
             'code',
             'ui'
         ]
-    }
+    };
     it('"services" is an optional property', async () => {
         const result = await checkServices.method(installYmlData);
         expect(result).toEqual({

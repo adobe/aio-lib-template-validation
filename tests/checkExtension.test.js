@@ -19,7 +19,7 @@ describe('Validation of the "extension" property in install.yml', function () {
             'code',
             'ui'
         ]
-    }
+    };
     it('"extension" is an optional property', async () => {
         const result = await checkExtension.method(installYmlData);
         expect(result).toEqual({
