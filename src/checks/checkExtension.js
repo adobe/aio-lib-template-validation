@@ -11,7 +11,7 @@ governing permissions and limitations under the License.
 */
 
 /**
- * Check that if the "extension" property is specified in the install.yml file it is an object containing the "serviceCode" key.
+ * Check that: if the "extension" property is specified in the install.yml file, it is an object containing the "serviceCode" key.
  *
  * @param {object} fileData
  * @returns {Promise<{message: string, status: string}>}
