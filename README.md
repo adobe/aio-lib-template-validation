@@ -11,11 +11,11 @@ NPM-based tool to validate App Builder templates during submission process to [A
 
 ## install.yml file
 
-| Field        | Description                                    | Required           |
-|--------------|------------------------------------------------|--------------------|
-| `categories` | Template must have categories defined          | :heavy_check_mark: |
-| `extension`  | Template must declare extension points it uses | :heavy_check_mark: |
-| `services`   | Template must declare services it uses         | :heavy_check_mark: |
+| Field        | Description                                                                                                | Required           |
+|--------------|------------------------------------------------------------------------------------------------------------|--------------------|
+| `categories` | Template must have categories defined                                                                      | :heavy_check_mark: |
+| `extension`  | Contains the extension metadata, like `serviceCode`.                                                       |                    |
+| `services`   | An array of objects. Each object represents a service the template depends on. The `code` key is required. |                    |
 
 # Getting started
 ## Installation
