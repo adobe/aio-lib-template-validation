@@ -19,8 +19,7 @@ governing permissions and limitations under the License.
 async function checkServices(fileData) {
     // "services" is an optional property
     // "services" is an array of objects containing the "code" key
-    if (
-        fileData.apis &&
+    if (fileData.apis &&
         (!Array.isArray(fileData.apis) || !areServicesValid(fileData.apis))
     ) {
         return {

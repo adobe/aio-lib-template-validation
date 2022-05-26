@@ -18,8 +18,7 @@ governing permissions and limitations under the License.
  */
 async function checkExtension(fileData) {
     // "extension" is an optional property
-    if (
-        fileData.extension &&
+    if (fileData.extension &&
         (fileData.extension.constructor.name !== 'Object' ||
             !fileData.extension.serviceCode)
     ) {
