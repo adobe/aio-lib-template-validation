@@ -13,29 +13,26 @@ governing permissions and limitations under the License.
 const { describe, it, expect } = require('@jest/globals');
 const checkServices = require('../src/checks/checkServices.js');
 
-describe('Validation of the "services" property in install.yml', function () {
+describe('Validation of the "apis" property in install.yml', function () {
     let installYmlData = {
-        'categories': [
-            'code',
-            'ui'
-        ]
+        categories: ['code', 'ui'],
     };
-    it('"services" is an optional property', async () => {
+    it('"apis" is an optional property', async () => {
         const result = await checkServices.method(installYmlData);
         expect(result).toEqual({
             message: '',
             status: 'pass',
         });
     });
-    it('"services" must be an array of objects containing the "code" key', async () => {
-        installYmlData['services'] = [
+    it('"apis" must be an array of objects containing the "code" key', async () => {
+        installYmlData['apis'] = [
             {
-                'code': 'AnalyticsSDK',
-                'credentials': 'OAuth'
+                code: 'AnalyticsSDK',
+                credentials: 'OAuth',
             },
             {
-                'code': 'CampaignStandard'
-            }
+                code: 'CampaignStandard',
+            },
         ];
         const result = await checkServices.method(installYmlData);
         expect(result).toEqual({
@@ -44,15 +41,16 @@ describe('Validation of the "services" property in install.yml', function () {
         });
     });
     it('Incorrect services fail validation', async () => {
-        installYmlData['services'] = [
+        installYmlData['apis'] = [
             {},
             {
-                'code': 'CampaignStandard'
-            }
+                code: 'CampaignStandard',
+            },
         ];
         const result = await checkServices.method(installYmlData);
         expect(result).toEqual({
-            message: '"services" must be an array of objects containing the "code" key',
+            message:
+                '"apis" must be an array of objects containing the "code" key',
             status: 'fail',
         });
     });

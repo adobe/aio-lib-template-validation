@@ -15,7 +15,7 @@ NPM-based tool to validate App Builder templates during submission process to [A
 | ------------ | ------------------------------------------------------------------------------------------------------------------------------ | ------------------ |
 | `categories` | Template must have categories defined                                                                                          | :heavy_check_mark: |
 | `extension`  | Template might implement an extension point. In this case it must contain the extension point metadata, like `serviceCode`.    |                    |
-| `services`   | Template might declare services it uses. Each object represents a service the template depends on. The `code` key is required. |                    |
+| `apis`   | Template might declare services it uses. Each object represents a service the template depends on. The `code` key is required. |                    |
 
 # Getting started
 ## Installation

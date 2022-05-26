@@ -18,7 +18,11 @@ governing permissions and limitations under the License.
  */
 async function checkExtension(fileData) {
     // "extension" is an optional property
-    if (fileData.extension && (fileData.extension.constructor.name !== 'Object' || !fileData.extension.serviceCode)) {
+    if (
+        fileData.extension &&
+        (fileData.extension.constructor.name !== 'Object' ||
+            !fileData.extension.serviceCode)
+    ) {
         return {
             message: '"extension" must provide the "serviceCode" key.',
             status: 'fail',

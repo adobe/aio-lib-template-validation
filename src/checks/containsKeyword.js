@@ -23,7 +23,11 @@ async function containsKeyword(fileData) {
             status: 'fail',
         };
     }
-    if (fileData.keywords.findIndex(element => element.includes('aio-app-builder-template')) === -1) {
+    if (
+        fileData.keywords.findIndex((element) =>
+            element.includes('aio-app-builder-template')
+        ) === -1
+    ) {
         return {
             message:
                 'aio-app-builder-template must be one of the keywords in package.json',
@@ -38,5 +42,6 @@ async function containsKeyword(fileData) {
 
 module.exports = {
     method: containsKeyword,
-    description: 'package.json must contain a keyword "aio-app-builder-template"',
+    description:
+        'package.json must contain a keyword "aio-app-builder-template"',
 };

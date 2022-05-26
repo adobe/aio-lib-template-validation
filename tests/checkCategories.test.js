@@ -10,7 +10,7 @@ OF ANY KIND, either express or implied. See the License for the specific languag
 governing permissions and limitations under the License.
 */
 
-const {describe, it, expect} = require('@jest/globals');
+const { describe, it, expect } = require('@jest/globals');
 const checkCategories = require('../src/checks/checkCategories.js');
 
 describe(`install.yml contains categories`, function () {
