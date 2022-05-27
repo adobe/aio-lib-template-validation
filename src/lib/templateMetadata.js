@@ -19,12 +19,13 @@ const containsKeyword = require('../checks/containsKeyword');
 const checkCategories = require('../checks/checkCategories');
 const checkExtension = require('../checks/checkExtension');
 const checkServices = require('../checks/checkServices');
+const checkEvent = require('../checks/checkEvent')
 
 const filesToCheck = [
     {
         name: 'install.yml',
         parser: YAML,
-        checks: [checkCategories, checkExtension, checkServices],
+        checks: [checkCategories, checkExtension, checkServices, checkEvent],
     },
     {
         name: 'package.json',
