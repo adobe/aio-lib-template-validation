@@ -19,7 +19,8 @@ const containsKeyword = require('../checks/containsKeyword');
 const checkCategories = require('../checks/checkCategories');
 const checkExtension = require('../checks/checkExtension');
 const checkServices = require('../checks/checkServices');
-const checkEvent = require('../checks/checkEvent')
+const checkEvent = require('../checks/checkEvent');
+const checkRuntime = require('../checks/checkRuntime');
 
 const filesToCheck = [
     {
