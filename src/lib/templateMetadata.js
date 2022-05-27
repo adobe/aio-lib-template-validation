@@ -25,7 +25,13 @@ const filesToCheck = [
     {
         name: 'install.yml',
         parser: YAML,
-        checks: [checkCategories, checkExtension, checkServices, checkEvent],
+        checks: [
+            checkCategories, 
+            checkExtension, 
+            checkServices, 
+            checkEvent, 
+            checkRuntime
+        ],
     },
     {
         name: 'package.json',
