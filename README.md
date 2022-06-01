@@ -13,7 +13,7 @@ NPM-based tool to validate App Builder templates during submission process to [A
 
 | Field        | Type | Description                                                                                                                    | Required           |
 | ------------ | ------------ | ------------------------------------------------------------------------------------------------------------------------------ | ------------------ |
-| `categories` | list of strings | Template must have categories. defined                                                                                          | :heavy_check_mark: |
+| `categories` | list of strings | Template must have categories defined.                                                                                          | :heavy_check_mark: |
 | `extension`  | object | Template might implement an extension point. One of its properties must be `serviceCode`, which will contain the extension metadata. |                    |
 | `apis`   | list of objects | Template might declare services it uses. Each object represents a service the template depends on and must contain `code` as one of its properties. |                    |
 | `event`   | object | This will list the event configuration for the template. The event template code that contains this specification may read this to configure itself. The object can have two properties: `consumer` or `provider`. |                    |
