@@ -20,8 +20,7 @@ async function checkExtension(fileData) {
     // "extension" is an optional property
     if (fileData.extension &&
         (fileData.extension.constructor.name !== 'Object' ||
-            !fileData.extension.serviceCode)
-    ) {
+            !fileData.extension.serviceCode)) {
         return {
             message: '"extension" must provide the "serviceCode" key.',
             status: 'fail',

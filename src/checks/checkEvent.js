@@ -11,7 +11,7 @@ governing permissions and limitations under the License.
 */
 
 /**
- * Check that: if the "extension" property is specified in the install.yml file, it is an object containing the "serviceCode" key.
+ * Check that: if the "event" property is specified in the install.yml file, it is an object containing either the "provider" and/or "consumer" key.
  *
  * @param {object} fileData
  * @returns {Promise<{message: string, status: string}>}
@@ -20,8 +20,7 @@ governing permissions and limitations under the License.
   // "event" is an optional property
   if (fileData.event &&
       (fileData.event.constructor.name !== 'Object' ||
-      (!fileData.event.consumer && !fileData.event.provider))
-  ) {
+      (!fileData.event.consumer && !fileData.event.provider))) {
       return {
           message: '"event" must provide either the "provider" or "consumer" key.',
           status: 'fail',

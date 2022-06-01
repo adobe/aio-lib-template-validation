@@ -20,8 +20,7 @@ async function checkServices(fileData) {
     // "services" is an optional property
     // "services" is an array of objects containing the "code" key
     if (fileData.apis &&
-        (!Array.isArray(fileData.apis) || !areServicesValid(fileData.apis))
-    ) {
+        (!Array.isArray(fileData.apis) || !areServicesValid(fileData.apis))) {
         return {
             message:
                 '"apis" must be an array of objects containing the "code" key',
