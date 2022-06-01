@@ -10,7 +10,7 @@ OF ANY KIND, either express or implied. See the License for the specific languag
 governing permissions and limitations under the License.
 */
 
-const {describe, it, expect} = require('@jest/globals');
+const { describe, it, expect } = require('@jest/globals');
 const containsKeyword = require('../src/checks/containsKeyword');
 
 describe(`contains keyword aio-app-builder-template`, function () {

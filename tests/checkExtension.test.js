@@ -15,10 +15,7 @@ const checkExtension = require('../src/checks/checkExtension.js');
 
 describe('Validation of the "extension" property in install.yml', function () {
     let installYmlData = {
-        'categories': [
-            'code',
-            'ui'
-        ]
+        categories: ['code', 'ui'],
     };
     it('"extension" is an optional property', async () => {
         const result = await checkExtension.method(installYmlData);
@@ -29,7 +26,7 @@ describe('Validation of the "extension" property in install.yml', function () {
     });
     it('"extension" must provide the "serviceCode" key', async () => {
         installYmlData['extension'] = {
-            'serviceCode': 'dx/excshell/1'
+            serviceCode: 'dx/excshell/1',
         };
         const result = await checkExtension.method(installYmlData);
         expect(result).toEqual({

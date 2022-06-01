@@ -19,9 +19,11 @@ governing permissions and limitations under the License.
 async function checkServices(fileData) {
     // "services" is an optional property
     // "services" is an array of objects containing the "code" key
-    if (fileData.services && (!Array.isArray(fileData.services) || !areServicesValid(fileData.services))) {
+    if (fileData.apis &&
+        (!Array.isArray(fileData.apis) || !areServicesValid(fileData.apis))) {
         return {
-            message: '"services" must be an array of objects containing the "code" key',
+            message:
+                '"apis" must be an array of objects containing the "code" key',
             status: 'fail',
         };
     }
@@ -46,5 +48,5 @@ function areServicesValid(services) {
 
 module.exports = {
     method: checkServices,
-    description: 'Validation of the "services" property in install.yml',
+    description: 'Validation of the "apis" property in install.yml',
 };

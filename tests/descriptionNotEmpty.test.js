@@ -27,7 +27,9 @@ describe(`checks description is not empty`, function () {
         };
         const result = await descriptionNotEmpty.method(descJSON);
         expect(result.status).toEqual('fail');
-        expect(result.message).toEqual('package.json must contain a description');
+        expect(result.message).toEqual(
+            'package.json must contain a description'
+        );
     });
     it('missing description, returns status: fail', async () => {
         let descJSON = {
@@ -35,7 +37,9 @@ describe(`checks description is not empty`, function () {
         };
         const result = await descriptionNotEmpty.method(descJSON);
         expect(result.status).toEqual('fail');
-        expect(result.message).toEqual('package.json must contain a description');
+        expect(result.message).toEqual(
+            'package.json must contain a description'
+        );
     });
     it('returns status: fail', async () => {
         let vJSON = {};

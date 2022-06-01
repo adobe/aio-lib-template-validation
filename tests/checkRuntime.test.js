@@ -11,46 +11,33 @@ governing permissions and limitations under the License.
 */
 
 const { describe, it, expect } = require('@jest/globals');
-const checkServices = require('../src/checks/checkServices.js');
+const checkRuntime = require('../src/checks/checkRuntime.js');
 
-describe('Validation of the "apis" property in install.yml', function () {
+describe('Validation of the "runtime" property in install.yml', function () {
     let installYmlData = {
         categories: ['code', 'ui'],
     };
-    it('"apis" is an optional property', async () => {
-        const result = await checkServices.method(installYmlData);
+    it('"runtime" is an optional property', async () => {
+        const result = await checkRuntime.method(installYmlData);
         expect(result).toEqual({
             message: '',
             status: 'pass',
         });
     });
-    it('"apis" must be an array of objects containing the "code" key', async () => {
-        installYmlData['apis'] = [
-            {
-                code: 'AnalyticsSDK',
-                credentials: 'OAuth',
-            },
-            {
-                code: 'CampaignStandard',
-            },
-        ];
-        const result = await checkServices.method(installYmlData);
+    it('"runtime" must be a boolean', async () => {
+        installYmlData['runtime'] = true;
+        const result = await checkRuntime.method(installYmlData);
         expect(result).toEqual({
             message: '',
             status: 'pass',
         });
     });
-    it('Incorrect services fail validation', async () => {
-        installYmlData['apis'] = [
-            {},
-            {
-                code: 'CampaignStandard',
-            },
-        ];
-        const result = await checkServices.method(installYmlData);
+    it('Incorrect runtime value fails validation', async () => {
+        installYmlData['runtime'] = "XXX";
+        const result = await checkRuntime.method(installYmlData);
         expect(result).toEqual({
             message:
-                '"apis" must be an array of objects containing the "code" key',
+            '"runtime" must be a boolean value',
             status: 'fail',
         });
     });

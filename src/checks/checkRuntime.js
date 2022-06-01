@@ -11,28 +11,26 @@ governing permissions and limitations under the License.
 */
 
 /**
- * Check that: if the "extension" property is specified in the install.yml file, it is an object containing the "serviceCode" key.
- *
+ * Check that: if the "runtime" property is specified in the install.yml file, it is a boolean value 
+ * that specifies whether to add Runtime to App Builder application.
  * @param {object} fileData
  * @returns {Promise<{message: string, status: string}>}
  */
-async function checkExtension(fileData) {
-    // "extension" is an optional property
-    if (fileData.extension &&
-        (fileData.extension.constructor.name !== 'Object' ||
-            !fileData.extension.serviceCode)) {
-        return {
-            message: '"extension" must provide the "serviceCode" key.',
-            status: 'fail',
-        };
-    }
-    return {
-        message: '',
-        status: 'pass',
-    };
+ async function checkRuntime(fileData) {
+  // "runtime" is an optional property
+  if (fileData.runtime && typeof fileData.runtime !== "boolean") {
+      return {
+          message: '"runtime" must be a boolean value',
+          status: 'fail',
+      };
+  }
+  return {
+      message: '',
+      status: 'pass',
+  };
 }
 
 module.exports = {
-    method: checkExtension,
-    description: 'Validation of the "extension" property in install.yml',
+  method: checkRuntime,
+  description: 'Validation of the "runtime" property in install.yml',
 };

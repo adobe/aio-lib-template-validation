@@ -19,17 +19,25 @@ const containsKeyword = require('../checks/containsKeyword');
 const checkCategories = require('../checks/checkCategories');
 const checkExtension = require('../checks/checkExtension');
 const checkServices = require('../checks/checkServices');
+const checkEvent = require('../checks/checkEvent');
+const checkRuntime = require('../checks/checkRuntime');
 
 const filesToCheck = [
     {
-        "name": "install.yml",
-        "parser": YAML,
-        "checks": [checkCategories, checkExtension, checkServices]
+        name: 'install.yml',
+        parser: YAML,
+        checks: [
+            checkCategories, 
+            checkExtension, 
+            checkServices, 
+            checkEvent, 
+            checkRuntime
+        ],
     },
     {
-        "name": "package.json",
-        "parser": JSON,
-        "checks": [descriptionNotEmpty, containsKeyword]
+        name: 'package.json',
+        parser: JSON,
+        checks: [descriptionNotEmpty, containsKeyword],
     },
 ];
 
@@ -57,7 +65,7 @@ async function checkTemplateMetadata(path) {
             for (const check of fileToCheck.checks) {
                 let result = await check.method(fileData);
                 results.stats.tests++;
-                result = {...{description: check.description}, ...result};
+                result = { ...{ description: check.description }, ...result };
                 if (result.status === 'fail') {
                     results.stats.failures++;
                     results.failures.push(result);
@@ -72,7 +80,8 @@ async function checkTemplateMetadata(path) {
             results.failures.push({
                 message: fileToCheck.name + ' file not found or is invalid',
                 status: 'fail',
-                description: fileToCheck.name + ' is required and must be valid'
+                description:
+                    fileToCheck.name + ' is required and must be valid',
             });
         }
     }

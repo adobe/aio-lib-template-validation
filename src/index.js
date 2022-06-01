@@ -17,7 +17,9 @@ const check = require('./commands/check');
 
 program
     .command('run-checks <path>')
-    .description('Run all checks on App Builder template given a path to its code')
+    .description(
+        'Run all checks on App Builder template given a path to its code'
+    )
     .action(check)
     .option('-j, --json', 'Output in JSON format', false);
 

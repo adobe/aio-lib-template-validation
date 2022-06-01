@@ -11,28 +11,28 @@ governing permissions and limitations under the License.
 */
 
 /**
- * Check that: if the "extension" property is specified in the install.yml file, it is an object containing the "serviceCode" key.
+ * Check that: if the "event" property is specified in the install.yml file, it is an object containing either the "provider" and/or "consumer" key.
  *
  * @param {object} fileData
  * @returns {Promise<{message: string, status: string}>}
  */
-async function checkExtension(fileData) {
-    // "extension" is an optional property
-    if (fileData.extension &&
-        (fileData.extension.constructor.name !== 'Object' ||
-            !fileData.extension.serviceCode)) {
-        return {
-            message: '"extension" must provide the "serviceCode" key.',
-            status: 'fail',
-        };
-    }
-    return {
-        message: '',
-        status: 'pass',
-    };
+ async function checkEvent(fileData) {
+  // "event" is an optional property
+  if (fileData.event &&
+      (fileData.event.constructor.name !== 'Object' ||
+      (!fileData.event.consumer && !fileData.event.provider))) {
+      return {
+          message: '"event" must provide either the "provider" or "consumer" key.',
+          status: 'fail',
+      };
+  }
+  return {
+      message: '',
+      status: 'pass',
+  };
 }
 
 module.exports = {
-    method: checkExtension,
-    description: 'Validation of the "extension" property in install.yml',
+  method: checkEvent,
+  description: 'Validation of the "event" property in install.yml',
 };
