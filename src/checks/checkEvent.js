@@ -18,11 +18,9 @@ governing permissions and limitations under the License.
  */
  async function checkEvent(fileData) {
   // "event" is an optional property
-  if (fileData.event &&
-      (fileData.event.constructor.name !== 'Object' ||
-      (!fileData.event.consumer && !fileData.event.provider))) {
+  if (fileData.event && fileData.event.constructor.name !== 'Object') {
       return {
-          message: '"event" must provide either the "provider" or "consumer" key.',
+          message: '"event" must be an object.',
           status: 'fail',
       };
   }

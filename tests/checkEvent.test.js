@@ -24,7 +24,7 @@ describe('Validation of the "event" property in install.yml', function () {
             status: 'pass',
         });
     });
-    it('"event" must provide either the "provider" or "consumer" key', async () => {
+    it('"event" must be an object', async () => {
         installYmlData['event'] = {
             consumer: {
               type: "some-type",
@@ -40,53 +40,12 @@ describe('Validation of the "event" property in install.yml', function () {
             status: 'pass',
         });
     });
-    it('"event" must provide either the "provider" or "consumer" key', async () => {
-      installYmlData['event'] = {
-          provider: {
-            name: "provider-name",
-            description: "provider-description",
-            "event-types": [
-              "event-type-1",
-              "event-type-2"
-            ]
-          }
-      };
-      const result = await checkEvent.method(installYmlData);
-      expect(result).toEqual({
-          message: '',
-          status: 'pass',
-      });
-    });
-    it('"event" must provide either the "provider" or "consumer" key', async () => {
-      installYmlData['event'] = {
-          consumer: {
-            type: "some-type",
-            provider: [
-              "event-type-1",
-              "event-type-2"
-            ]
-          },
-          provider: {
-            name: "provider-name",
-            description: "provider-description",
-            "event-types": [
-              "event-type-1",
-              "event-type-2"
-            ]
-          }
-      };
-      const result = await checkEvent.method(installYmlData);
-      expect(result).toEqual({
-          message: '',
-          status: 'pass',
-      });
-    });
-    it('empty object fails validation', async () => {
-        installYmlData['event'] = {};
+    it('"event" must be an object', async () => {
+        installYmlData['event'] = "event";
         const result = await checkEvent.method(installYmlData);
         expect(result).toEqual({
-            message: '"event" must provide either the "provider" or "consumer" key.',
-            status: 'fail',
+          message: '"event" must be an object.',
+          status: 'fail',
         });
     });
 });
