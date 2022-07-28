@@ -24,6 +24,14 @@ describe('Validation of the "extensions" property in install.yml', function () {
             status: 'pass',
         });
     });
+    it('"extensions" - must be an Array', async () => {
+        installYmlData['extensions'] = 'dx/excshell/1';
+        const result = await checkExtensions.method(installYmlData);
+        expect(result).toEqual({
+            message: '"extensions" must be an Array.',
+            status: 'fail',
+        });
+    });
     it('"extensions" - an extension must provide the "extensionPointId" key', async () => {
         installYmlData['extensions'] = [
             { extensionPointId: 'dx/excshell/1' }
@@ -41,6 +49,16 @@ describe('Validation of the "extensions" property in install.yml', function () {
         const result = await checkExtensions.method(installYmlData);
         expect(result).toEqual({
             message: 'extension item is not an object',
+            status: 'fail',
+        });
+    });
+    it('"extensions" - an extension item must have the string property "extensionPointId"', async () => {
+        installYmlData['extensions'] = [
+            { nonExtensionPointIdSet: '' }
+        ];
+        const result = await checkExtensions.method(installYmlData);
+        expect(result).toEqual({
+            message: 'extension item does not have the string property "extensionPointId"',
             status: 'fail',
         });
     });
