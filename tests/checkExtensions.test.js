@@ -13,7 +13,7 @@ governing permissions and limitations under the License.
 const { describe, it, expect } = require('@jest/globals');
 const checkExtensions = require('../src/checks/checkExtensions.js');
 
-describe('Validation of the "extension" property in install.yml', function () {
+describe('Validation of the "extensions" property in install.yml', function () {
     let installYmlData = {
         categories: ['code', 'ui'],
     };
@@ -27,7 +27,7 @@ describe('Validation of the "extension" property in install.yml', function () {
     it('"extensions" - an extension must provide the "extensionPointId" key', async () => {
         installYmlData['extensions'] = [
             { extensionPointId: 'dx/excshell/1' }
-        ] 
+        ];
         const result = await checkExtensions.method(installYmlData);
         expect(result).toEqual({
             message: '',
@@ -37,7 +37,7 @@ describe('Validation of the "extension" property in install.yml', function () {
     it('"extensions" - an extension item must be an object', async () => {
         installYmlData['extensions'] = [
             'dx/excshell/1'
-        ] 
+        ];
         const result = await checkExtensions.method(installYmlData);
         expect(result).toEqual({
             message: 'extension item is not an object',

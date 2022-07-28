@@ -18,7 +18,7 @@ governing permissions and limitations under the License.
  */
 async function checkExtensions(fileData) {
     // "extensions" is an optional property
-    
+
     if (fileData.extensions) {
         if (!Array.isArray(fileData.extensions)) {
             return {
@@ -26,20 +26,20 @@ async function checkExtensions(fileData) {
                 status: 'fail',
             };
         } else {
-            let error = null
+            let error = null;
 
             if (fileData.extensions.length === 0) {
-                error = 'extensions array cannot be empty'
+                error = 'extensions array cannot be empty';
             }
 
-            for (ext of fileData.extensions) {
+            for (let ext of fileData.extensions) {
                 if (!(typeof ext === 'object') || Array.isArray(ext)) {
                     error = 'extension item is not an object';
                     break;
                 }
 
                 if (typeof ext.extensionPointId !== 'string') {
-                    error = 'extension item does not have the string property "extensionPointId"'
+                    error = 'extension item does not have the string property "extensionPointId"';
                     break;
                 }
             }
@@ -51,7 +51,7 @@ async function checkExtensions(fileData) {
                 };
             }
         }
-    } 
+    }
     return {
         message: '',
         status: 'pass',
