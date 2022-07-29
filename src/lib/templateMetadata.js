@@ -17,7 +17,7 @@ const YAML = require('yaml');
 const descriptionNotEmpty = require('../checks/descriptionNotEmpty');
 const containsKeyword = require('../checks/containsKeyword');
 const checkCategories = require('../checks/checkCategories');
-const checkExtension = require('../checks/checkExtension');
+const checkExtensions = require('../checks/checkExtensions');
 const checkServices = require('../checks/checkServices');
 const checkEvent = require('../checks/checkEvent');
 const checkRuntime = require('../checks/checkRuntime');
@@ -28,7 +28,7 @@ const filesToCheck = [
         parser: YAML,
         checks: [
             checkCategories, 
-            checkExtension, 
+            checkExtensions, 
             checkServices, 
             checkEvent, 
             checkRuntime

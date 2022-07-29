@@ -1,13 +1,14 @@
 {
   "name": "@adobe/aio-lib-template-validation",
-  "version": "2.4.0",
+  "version": "3.0.0",
   "description": "Run validation checks on App Builder templates",
   "main": "src/import.cjs",
   "bin": {
     "tv": "src/index.js"
   },
   "scripts": {
-    "test": "jest -c ./tests/jest.config.js",
+    "test": "npm run lint:check && npm run unit-tests",
+    "unit-tests": "jest --ci",
     "format:check": "prettier --check '**/*.js'",
     "format:write": "prettier --write '**/*.js'",
     "lint:check": "eslint --ext .js .",
@@ -34,6 +35,31 @@
     "eslint": "^8.11.0",
     "eslint-config-prettier": "^8.5.0",
     "jest": "^27.5.1",
+    "jest-junit": "^14.0.0",
     "prettier": "^2.6.0"
+  },
+  "jest": {
+    "rootDir": ".",
+    "testEnvironment": "node",
+    "verbose": true,
+    "setupFilesAfterEnv": [
+      "./tests/jest.setup.js"
+    ],
+    "testPathIgnorePatterns": [
+      "<rootDir>/node_modules/"
+    ],
+    "collectCoverage": true,
+    "collectCoverageFrom": [],
+    "reporters": [
+      "default",
+      "jest-junit"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 100,
+        "lines": 100,
+        "statements": 100
+      }
+    }
   }
 }
