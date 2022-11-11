@@ -4,17 +4,17 @@ NPM-based tool to validate App Builder templates during submission process to [A
 # Validation checks
 ## package.json file
 
-| Field         | Description                                       | Required           |
-| ------------- | ------------------------------------------------- | ------------------ |
-| `description` | Template must have a description                  | :heavy_check_mark: |
-| `keywords`    | Must contain a keyword `aio-app-builder-template` | :heavy_check_mark: |
+| Field         | Description                                        | Required           |
+| ------------- | -------------------------------------------------- | ------------------ |
+| `description` | Template must have a description.                  | :heavy_check_mark: |
+| `keywords`    | Must contain a keyword `aio-app-builder-template`. | :heavy_check_mark: |
 
 ## install.yml file
 
 | Field        | Type            | Description                                                                                                                                                                                              | Required           |
 | ------------ | --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------ |
-| `categories` | list of strings | Template must have categories defined.                                                                                                                                                                   | :heavy_check_mark: |
-| `extensions` | list of objects | List extension points that a template implements. Each extension point must have the string property "extensionPointId".                                                                                 |                    |
+| `categories` | list of strings | Template must have categories defined. See [allowed values](https://github.com/adobe/aio-lib-console-project-installation/blob/main/schema/sub-schemas/categories.schema.json).                          | :heavy_check_mark: |
+| `extensions` | list of objects | List extension points that a template implements. Each extension point must have the string property `extensionPointId`.                                                                                 |                    |
 | `apis`       | list of objects | List the APIs required to be added to all Workspaces in the App Builder Project, if they don't exist. Each API object must contain `code` as one of its properties, this is the sdk code of the service. |                    |
 | `event`      | object          | This will list the event configuration for the template. The event template code that contains this specification may read this to configure itself.                                                     |                    |
 | `runtime`    | boolean         | Whether to add Runtime to App Builder application or not. Defaults to `false`.                                                                                                                           |                    |
@@ -54,7 +54,7 @@ To get started:
 
 To run tests a single time, run the following command:
 
-`npm run test`
+`npm test`
 
 ## Licensing
 

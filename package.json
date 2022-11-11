@@ -1,14 +1,13 @@
 {
   "name": "@adobe/aio-lib-template-validation",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "description": "Run validation checks on App Builder templates",
   "main": "src/import.cjs",
   "bin": {
     "tv": "src/index.js"
   },
   "scripts": {
-    "test": "npm run lint:check && npm run unit-tests",
-    "unit-tests": "jest --ci",
+    "test": "npm run lint:check && jest --ci",
     "format:check": "prettier --check '**/*.js'",
     "format:write": "prettier --write '**/*.js'",
     "lint:check": "eslint --ext .js .",
@@ -27,13 +26,28 @@
   "files": [
     "src"
   ],
+  "engines": {
+    "node": "^14 || ^16"
+  },
   "dependencies": {
+    "@adobe/aio-lib-console-project-installation": "^2.1.0",
+    "ajv": "^8.11.0",
+    "ajv-errors": "^3.0.0",
     "commander": "^9.0.0",
     "yaml": "^2.0.0"
   },
   "devDependencies": {
+    "@adobe/eslint-config-aio-lib-config": "^2.0.0",
+    "@jest/globals": "^29.3.1",
     "eslint": "^8.11.0",
     "eslint-config-prettier": "^8.5.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jest": "^27.1.5",
+    "eslint-plugin-jsdoc": "^39.6.2",
+    "eslint-plugin-n": "^15.5.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^6.1.1",
     "jest": "^27.5.1",
     "jest-junit": "^14.0.0",
     "prettier": "^2.6.0"

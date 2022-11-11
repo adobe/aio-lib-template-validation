@@ -1,4 +1,4 @@
-#! /usr/bin/env node
+#!/usr/bin/env node
 
 /*
 Copyright 2022 Adobe. All rights reserved.
@@ -12,18 +12,18 @@ OF ANY KIND, either express or implied. See the License for the specific languag
 governing permissions and limitations under the License.
 */
 
-const { program } = require('commander');
-const check = require('./commands/check');
+const { program } = require('commander')
+const check = require('./commands/check')
 
 program
-    .command('run-checks <path>')
-    .description(
-        'Run all checks on App Builder template given a path to its code'
-    )
-    .action(check)
-    .option('-j, --json', 'Output in JSON format', false);
+  .command('run-checks <path>')
+  .description(
+    'Run all checks on App Builder template given a path to its code'
+  )
+  .action(check)
+  .option('-j, --json', 'Output in JSON format', false)
 
 program.parseAsync().catch((e) => {
-    console.error(e);
-    process.exitCode = 1;
-});
+  console.error(e)
+  process.exitCode = 1
+})
