@@ -10,7 +10,7 @@ OF ANY KIND, either express or implied. See the License for the specific languag
 governing permissions and limitations under the License.
 */
 
-const LibConfigurationHandler = require('@adobe/aio-lib-console-project-installation/src/lib/configuration-handler')
+const templateHandler = require('@adobe/aio-lib-console-project-installation')
 
 /**
  * Check that install.yaml file has correct structure
@@ -19,11 +19,10 @@ const LibConfigurationHandler = require('@adobe/aio-lib-console-project-installa
  * @returns {Promise<{message: string, status: string}>} Check result
  */
 async function checkInstallSchema (path) {
-  const res = LibConfigurationHandler.load(path)
-  const { valid: configIsValid, errors: configErrors } = LibConfigurationHandler.validate(res.values, true)
-  if (!configIsValid) {
+  const { valid, errors } = await templateHandler.validate(path, true)
+  if (!valid) {
     const filteredErrors = []
-    for (const configError of configErrors) {
+    for (const configError of errors) {
       const filteredError = {
         ...configError.error && { message: configError.error },
         ...configError.suggestion && { suggestion: configError.suggestion }
