@@ -30,7 +30,7 @@
     "node": "^14 || ^16"
   },
   "dependencies": {
-    "@adobe/aio-lib-console-project-installation": "^2.1.0",
+    "@adobe/aio-lib-console-project-installation": "^2.2.0",
     "ajv": "^8.11.0",
     "ajv-errors": "^3.0.0",
     "commander": "^9.0.0",
