@@ -10,58 +10,63 @@ OF ANY KIND, either express or implied. See the License for the specific languag
 governing permissions and limitations under the License.
 */
 
-const { checkTemplateMetadata } = require('../lib/templateMetadata');
+const { checkTemplateMetadata } = require('../lib/templateMetadata')
 
 /**
  * Outputs check results
  *
- * @param {object} results
- * @param {boolean} outputInJson
+ * @param {object} results Results to output
+ * @param {boolean} outputInJson JSON output
  */
-function outputResults(results, outputInJson) {
-    if (outputInJson === true) {
-        console.log(JSON.stringify(results, null, 4));
-    } else {
-        if (results.stats.failures !== 0) {
-            console.log(
+function outputResults (results, outputInJson) {
+  if (outputInJson === true) {
+    console.log(JSON.stringify(results, null, 4))
+  } else {
+    if (results.stats.failures !== 0) {
+      console.log(
                 `${results.stats.failures} of ${results.stats.tests} tests failed.`
-            );
-            console.log('Failed tests:');
-            let i = 1;
-            for (const test of results.failures) {
-                console.log(` ${i++}) ${test.description}`);
-                console.log(`    Error: ${test.message}`);
-            }
-            console.log('Passed tests:');
-            i = 1;
-            for (const test of results.passes) {
-                console.log(` ${i++}) ${test.description}`);
-            }
-        } else {
-            console.log(
-                `${results.stats.passes} of ${results.stats.tests} tests passed.`
-            );
-            console.log('Tests:');
-            let i = 1;
-            for (const test of results.passes) {
-                console.log(` ${i++}) ${test.description}`);
-            }
+      )
+      console.log('Failed tests:')
+      let i = 1
+      for (const test of results.failures) {
+        console.log(` ${i++}) ${test.description}`)
+        for (const error of test.errors) {
+          console.log(`    Error: ${error.message}`)
+          if (error.suggestion) {
+            console.log(`    Suggestion: ${error.suggestion}`)
+          }
         }
+      }
+      console.log('Passed tests:')
+      i = 1
+      for (const test of results.passes) {
+        console.log(` ${i++}) ${test.description}`)
+      }
+    } else {
+      console.log(
+                `${results.stats.passes} of ${results.stats.tests} tests passed.`
+      )
+      console.log('Tests:')
+      let i = 1
+      for (const test of results.passes) {
+        console.log(` ${i++}) ${test.description}`)
+      }
     }
+  }
 }
 
 /**
  * Run checks on template package
  *
- * @param {string} path
- * @param {object} options
+ * @param {string} path Path to the template
+ * @param {object} options Additional options
  * @returns {Promise<void>}
  */
-async function check(path, options) {
-    let outputInJson = options.json;
-    let results = await checkTemplateMetadata(path);
-    process.exitCode = results.stats.failures !== 0 ? 1 : 0;
-    outputResults(results, outputInJson);
+async function check (path, options) {
+  const outputInJson = options.json
+  const results = await checkTemplateMetadata(path)
+  process.exitCode = results.stats.failures !== 0 ? 1 : 0
+  outputResults(results, outputInJson)
 }
 
-module.exports = check;
+module.exports = check

@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://adobe.io/schemas/app-builder-templates/package-json-schema/1",
+  "type": "object",
+  "properties": {
+    "description": {
+      "type": "string",
+      "allOf": [
+        {
+          "minLength": 1
+        }
+      ],
+      "errorMessage": "Package must have a description"
+    },
+    "keywords": {
+      "type": "array",
+      "oneOf": [
+        {
+          "contains": {
+            "type": "string",
+            "pattern": "aio-app-builder-template"
+          }
+        }
+      ],
+      "items": {
+        "type": "string"
+      },
+      "errorMessage": "Package must contain 'aio-app-builder-template' keyword"
+    }
+  },
+  "required": [
+    "description",
+    "keywords"
+    ],
+  "additionalProperties": true
+}

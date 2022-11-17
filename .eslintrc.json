@@ -1,16 +1,51 @@
 {
-  "root": true,
-  "parserOptions": {
-       "ecmaVersion": 12,
-       "sourceType": "module"
+  "extends": "@adobe/eslint-config-aio-lib-config",
+  "settings": {
+    "jsdoc": {
+      "ignorePrivate": false,
+      "check-access": true,
+      "check-alignment": true,
+      "check-param-names": true,
+      "check-property-names": true,
+      "check-tag-names": true,
+      "check-types": true,
+      "check-values": true,
+      "empty-tags": true,
+      "implements-on-classes": true,
+      "multiline-blocks": true,
+      "newline-after-description": true,
+      "no-multi-asterisks": true,
+      "no-undefined-types": true,
+      "require-jsdoc": true,
+      "require-param": true,
+      "require-param-description": true,
+      "require-param-name": true,
+      "require-param-type": true,
+      "require-property": true,
+      "require-property-description": true,
+      "require-property-name": true,
+      "require-property-type": true,
+      "require-returns": true,
+      "require-returns-check": true,
+      "require-returns-description": true,
+      "require-returns-type": true,
+      "require-yields": true,
+      "require-yields-check": true,
+      "tag-lines": true,
+      "valid-types": true
+    }
   },
-  "extends": ["eslint:recommended", "prettier"],
   "rules": {
-    "semi": [2, "always"]
+    "node/no-unpublished-require": [
+      "error",
+      {
+        "allowModules": [
+          "@jest/globals"
+        ]
+      }
+    ]
   },
-  "env": {
-       "es2021": true,
-       "node": true,
-       "jest": true
+  "parserOptions": {
+    "ecmaVersion": 2020
   }
 }

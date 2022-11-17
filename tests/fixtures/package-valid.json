@@ -1,0 +1,8 @@
+{
+    "name": "@adobe/test-generator",
+    "version": "1.0.0",
+    "description": "My package description",
+    "keywords": [
+        "ecosystem:aio-app-builder-template"
+    ]
+}
