@@ -43,7 +43,8 @@
           "@jest/globals"
         ]
       }
-    ]
+    ],
+    "node/shebang": [0, {"convertPath": null}]
   },
   "parserOptions": {
     "ecmaVersion": 2020

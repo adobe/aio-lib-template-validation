@@ -11,11 +11,11 @@ governing permissions and limitations under the License.
 */
 
 const {
-    getTemplateMetadata,
-    checkTemplateMetadata,
+  getTemplateMetadata,
+  checkTemplateMetadata
 } = require('./lib/templateMetadata')
 
 module.exports = {
-    getTemplateMetadata,
-    checkTemplateMetadata,
+  getTemplateMetadata,
+  checkTemplateMetadata
 }
