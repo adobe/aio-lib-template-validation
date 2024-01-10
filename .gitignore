@@ -10,3 +10,5 @@ junit.xml
 
 # OSX
 .DS_Store
+
+package-lock.json

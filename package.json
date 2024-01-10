@@ -8,10 +8,8 @@
   },
   "scripts": {
     "test": "npm run lint:check && jest --ci",
-    "format:check": "prettier --check '**/*.js'",
-    "format:write": "prettier --write '**/*.js'",
-    "lint:check": "eslint --ext .js .",
-    "lint:fix": "eslint --ext .js --fix ."
+    "lint:check": "eslint .",
+    "lint:fix": "eslint --fix ."
   },
   "repository": {
     "type": "git",
@@ -27,7 +25,7 @@
     "src"
   ],
   "engines": {
-    "node": "^14 || ^16"
+    "node": ">=18"
   },
   "dependencies": {
     "@adobe/aio-lib-console-project-installation": "^2.2.0",
@@ -37,20 +35,20 @@
     "yaml": "^2.0.0"
   },
   "devDependencies": {
-    "@adobe/eslint-config-aio-lib-config": "^2.0.0",
+    "@adobe/eslint-config-aio-lib-config": "^2.0.2",
     "@jest/globals": "^29.3.1",
-    "eslint": "^8.11.0",
+    "eslint": "^8.56.0",
     "eslint-config-prettier": "^8.5.0",
-    "eslint-config-standard": "^17.0.0",
-    "eslint-plugin-import": "^2.26.0",
-    "eslint-plugin-jest": "^27.1.5",
-    "eslint-plugin-jsdoc": "^39.6.2",
-    "eslint-plugin-n": "^15.5.1",
+    "eslint-config-standard": "^17.1.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-jest": "^27.6.1",
+    "eslint-plugin-jsdoc": "^42.0.0",
+    "eslint-plugin-n": "^15.7.0",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^6.1.1",
-    "jest": "^27.5.1",
+    "jest": "^29",
     "jest-junit": "^14.0.0",
-    "prettier": "^2.6.0"
+    "typescript": "^5.3.3"
   },
   "jest": {
     "rootDir": ".",
@@ -72,7 +70,8 @@
       "global": {
         "branches": 100,
         "lines": 100,
-        "statements": 100
+        "statements": 100,
+        "functions": 100
       }
     }
   }
