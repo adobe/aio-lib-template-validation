@@ -1,6 +1,6 @@
 {
   "name": "@adobe/aio-lib-template-validation",
-  "version": "5.0.0",
+  "version": "5.0.1",
   "description": "Run validation checks on App Builder templates",
   "main": "src/import.cjs",
   "bin": {
