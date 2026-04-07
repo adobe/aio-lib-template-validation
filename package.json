@@ -25,7 +25,7 @@
     "src"
   ],
   "engines": {
-    "node": ">=18"
+    "node": ">=20"
   },
   "dependencies": {
     "@adobe/aio-lib-console-project-installation": "^3",
